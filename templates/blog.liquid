@@ -1,0 +1,14 @@
+<h1>{{ blog.title }}</h1>
+{% assign title = blog.title %}
+   
+
+{% for article in blog.articles %}
+   
+  <div>
+    <a href="{{ article.url }}">
+      <h1>{{title}}</h1>
+      <p> {{ article.author }}</p>
+      <div>{{ article.excerpt }}</div>
+    </a>
+  </div>
+{% endfor %}
