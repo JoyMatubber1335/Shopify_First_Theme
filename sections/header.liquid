@@ -1,0 +1,58 @@
+<header class ="header">
+<h1>{{shop.name}}  </h1>
+{% comment %} <h2> {{collections['frontpage'].handle}}</h2> {% endcomment %}
+
+
+<ul>
+<!-- Main menu -->
+{% for link in linklists.main-menu.links -%}
+ <li> {{ link.title | link_to: link.url }}</li>
+{%- endfor %}
+
+</ul>
+{% if section.settings.show_search %}
+<form action="/search">
+    <input type="search"  name="q"/>
+    <button type="submit">Search</button>
+</form>
+{% endif %}
+
+</header>
+
+
+<style>
+.header{
+     background : {{section.settings.bg }};
+}
+</style>
+
+{% stylesheet %}
+.header{
+    padding:20px;
+   
+}
+{% endstylesheet %}
+
+{% javascript %}
+  console.log("hay header");
+{% endjavascript %}
+
+
+{% schema %}
+{
+    "name":"Header",
+    "settings":
+     [
+        {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "Show Search form?"
+        },
+         {
+        "type": "color", 
+        "id": "bg",
+        "label": "Background color"
+        }
+     ]
+}
+{% endschema %}
