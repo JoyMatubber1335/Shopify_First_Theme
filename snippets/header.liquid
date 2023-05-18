@@ -1,7 +1,7 @@
 <header>
 <h1>{{shop.name}}  </h1>
 {% comment %} <h2> {{collections['frontpage'].handle}}</h2> {% endcomment %}
-</header>
+
 
 <ul>
 <!-- Main menu -->
@@ -10,3 +10,10 @@
 {%- endfor %}
 
 </ul>
+
+<form action="/search">
+    <input type="search"  name="q"/>
+    <button type="submit">Search</button>
+</form>
+
+</header>
