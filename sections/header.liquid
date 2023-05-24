@@ -1,33 +1,57 @@
-<header class ="header">
-<h1>{{shop.name}}  </h1>
-{% comment %} <h2> {{collections['frontpage'].handle}}</h2> {% endcomment %}
 
 
-<ul>
-<!-- Main menu -->
-{% for link in linklists.main-menu.links -%}
- <li> {{ link.title | link_to: link.url }}</li>
-{%- endfor %}
-
-</ul>
-{% if section.settings.show_search %}
-<form action="/search">
-    <input type="search"  name="q"/>
-    <button type="submit">Search</button>
-</form>
-{% endif %}
-
-</header>
 
 
-<style>
-.header{
-     background : {{section.settings.bg }};
+   {{ 'head.css' | asset_url | stylesheet_tag }}
+  <div class="announcement">
+    <h1>FREE SHIPPING OVER $99</h1>
+  </div>
+  
+  <header class="header" style="background-color: {{settings.head }};">
+    {% comment %} <h1>{{ shop.name }}</h1> {% endcomment %}
+    <!-- Main menu -->
+  
+     
+    <nav class="navbar">
+       
+        <ul> 
+        <img src="{{ 'logo2.png' | asset_url }}" alt="logo">
+
+
+            
+          {% for link in linklists.main-menu.links %}
+            <li>{{ link.title | link_to: link.url }}</li>
+          {% endfor %}
+        </ul>
+      </nav>
+      
+    
+  
+    {% if settings.show_search %}
+      <form action="/search">
+        <input type="search" name="q" placeholder="Search item.."/>
+        <button type="submit" >Search</button>
+      </form>
+    {% endif %}
+
+  </header>
+  
+  
+
+
+
+
+
+ {% comment %} <style>
+.announcement{
+     background : {{settings.Announcement }};
+     
 }
-</style>
+</style> {% endcomment %}
 
+{% comment %}
 {% stylesheet %}
-.header{
+.header{  
     padding:20px;
    
 }
@@ -35,12 +59,12 @@
 
 {% javascript %}
   console.log("hay header");
-{% endjavascript %}
+{% endjavascript %} {% endcomment %}
 
 
-{% schema %}
+{% comment %} {% schema %}
 {
-    "name":"Header",
+    "name":"head",
     "settings":
      [
         {
@@ -50,9 +74,9 @@
         },
          {
         "type": "color", 
-        "id": "bg",
+        "id": "head",
         "label": "Background color"
         }
      ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}

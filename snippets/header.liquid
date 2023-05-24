@@ -1,15 +1,19 @@
-<header>
+{% comment %} <header>
 <h1>{{shop.name}}  </h1>
 {% comment %} <h2> {{collections['frontpage'].handle}}</h2> {% endcomment %}
 
 
-<ul>
-<!-- Main menu -->
-{% for link in linklists.main-menu.links -%}
- <li> {{ link.title | link_to: link.url }}</li>
-{%- endfor %}
 
-</ul>
+<!-- Main menu -->
+<nav>
+    <ul>
+      {% for link in linklists.main-menu.links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+      {% endfor %}
+    </ul>
+  </nav>
+  
+
 {% if settings.show_search %}
 <form action="/search">
     <input type="search"  name="q"/>
@@ -17,4 +21,25 @@
 </form>
 {% endif %}
 
-</header>
+</header> {% endcomment %}
+<header style="background-color: {{ settings.head }};">
+    {% comment %} <h1>{{ shop.name }}</h1> {% endcomment %}
+    <!-- Main menu -->
+    <nav>
+      <ul>
+        {% for link in linklists.main-menu.links %}
+          <li>{{ link.title | link_to: link.url }}</li>
+        {% endfor %}
+      </ul>
+    </nav>
+  
+    {% if settings.show_search %}
+        <div class="search-container">
+          <span class="search-icon"></span>
+          <form class="search-form" action="/search">
+            <input class="search-input" type="search" name="q" />
+          </form>
+        </div>
+      {% endif %}
+      
+  </header>

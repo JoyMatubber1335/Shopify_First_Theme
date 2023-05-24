@@ -1,28 +1,43 @@
-{% paginate collection.products by 4 %}     
+{% paginate collection.products by 6 %}     
 
+{{ 'catalog.css' | asset_url | stylesheet_tag }}
 <select id="sort-by">
-    {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+  {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
 
-    {% for option in collection.sort_options %}
-        <option value="{{ option.value }}" 
-        {% if option.value == sort_by %}
-             selected="selected"
-        {% endif %}>
-        {{ option.name }}
-        </option>
-    {% endfor %}
+  {% for option in collection.sort_options %}
+    <option value="{{ option.value }}" {% if option.value == sort_by %} selected="selected" {% endif %}>
+      {{ option.name }}
+    </option>
+  {% endfor %}
 </select>
 
 
 <h1>
-{{collection.title}}
+  {{ collection.title }}
 </h1>
-{% for product in collection.products %}
- {% render 'product-item', product:product %}
 
-{% endfor %}
-{{ paginate | default_pagination}}
+<div class="product-grid">
+  {% for product in collection.products %}
+    <div class="product-box">
+      <p class="product-discount">
+        -10%
+      </p>
+      {% render 'product-item', product: product %}
+    </div>
+  {% endfor %}
+</div>
+
+
+
+<div class="pagination-container">
+  {{ paginate | default_pagination }}
+</div>
 {% endpaginate %}
+
+
+
+
+
 
 
 <script>

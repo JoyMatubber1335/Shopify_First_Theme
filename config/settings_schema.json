@@ -6,15 +6,28 @@
         "type": "color",
         "id": "bg",
         "label": "Background color",
-        "default": "#000000"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "text_color",
         "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "Announcement",
+        "label": "Announcement color",
+        "default": "#000000"
+      },
+
+      {
+        "type": "color",
+        "id": "head",
+        "label": "Header color",
         "default": "#ffffff"
       }
-    ] 
+    ]
   },
   {
     "name": "Settings",

@@ -1,1 +1,8 @@
-{% comment %} alert("{{'color Change '}}") {% endcomment %}
+document.addEventListener("DOMContentLoaded", function () {
+  const searchIcon = document.querySelector(".search-icon");
+  const searchForm = document.querySelector(".search-form");
+
+  searchIcon.addEventListener("click", function () {
+    searchForm.classList.toggle("show-search-form");
+  });
+});

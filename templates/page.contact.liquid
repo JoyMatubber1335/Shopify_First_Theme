@@ -1,27 +1,44 @@
-<h1> {{page.title}}</h1>
-<div>
-{{page.content}}
+{{ 'contact.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  
+  <div class="box">
+    <div class="grid left-grid">
+      {% comment %} <h1>Contact  Us</h1> {% endcomment %}
+      <h2>Talk to a member of our sales team</h2>
+      <p class="phone-number">Call : +88 01408099845</p>
+      <button class="create-button">Call</button>
+    </div>
+  
+    <div class="grid right-grid">
+      {% comment %} <h1>Support Us</h1> {% endcomment %}
+      <div class="form-container">
+        {% form 'contact' %}
+          {{ form.errors | default_errors }}
+          <h1 class="support-text">Support Our Product And Account</h1>
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" name="contact[name]" />
+          </div>
+      
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" name="contact[email]" />
+          </div>
+      
+          <div class="input-group">
+            <label for="message">Message</label>
+            <textarea name="contact[body]"></textarea>
+          </div>
+      
+          <div >
+            <button class="create-button">Send</button>
+          </div>
+        {% endform %}
+      </div>
+    
+     
+      {% comment %} /<button class="create-button">Create</button> {% endcomment %}
+    </div>
+  </div>
 </div>
-
-{% comment %} sent message usng mail  {% endcomment %}
-{% form 'contact' %}
-  {{ form.errors | default_errors }}
-
-  <div class="email">
-    <label for="email">Email</label>
-    <input type="email" name="contact[email]" />
-  </div>
-
-<div class="email">
-    <label for="email">Test</label>
-    <input type="text" name="contact[test]"/>
-  </div>
-  <div class="message">
-    <label for="message">Message</label>
-    <textarea name="contact[body]"></textarea>
-  </div>
-
-  <div class="submit">
-    <input type="submit" value="Create" />
-  </div>
-{% endform %}
