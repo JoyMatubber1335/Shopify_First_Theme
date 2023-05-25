@@ -1,17 +1,33 @@
-<h1>{{product.title}}</h1>
-<h1>{{product.price|money}}</h1>
-<div>
-{{product.description }}
+{{'product.css' | asset_url | stylesheet_tag}}
+<div class="product-page">
+    <div class="product-image">
+      <img src="{{ product.image }}" alt="{{ product.title }}">
+    </div>
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+      <h2>{{ product.price | money }}</h2>
+      <div class="quantity">
+        <button class="quantity-btn minus">-</button>
+        <input type="number" class="quantity-input" value="1" min="1">
+        <button class="quantity-btn plus">+</button>
+       
+      </div>
+      <form action="/cart/add" method="post">
+        <select name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}">
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="add-to-cart">{{ "General.add_to_cart" | t }}</button>
+      </form>
+      <div class="description">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+  
+  
 
-</div>
-{% form 'product',product %}
-<select name="id">
-{% for variant in product.variants %}
-<option value={{ variant.id }}>
-{{ variant.title }}
-</option>
-{% endfor %}
-</select>
-
-<button type='submit'>{{ "General.add_to_cart" | t }}</button>
-{% endform %}
+  <script src="{{ 'product_Quantity.js' | asset_url }}"></script>

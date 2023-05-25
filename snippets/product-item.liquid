@@ -1,8 +1,18 @@
-<div>
-<a href="{{product.url}}">
-  <img src="{{product.featured_image | image_url: width: 400}}"/>
-  <h3>{{product.title}}</h3>
-  <p>BDT:  {{ product.price }}</p>
+
 
   
+
+{% assign price = product.price %}
+{% assign discount = 0.1 %}
+{% assign current_price = price | times: discount %}
+
+
+<div class="product-item">
+  <a href="{{product.url}}">
+    <img src="{{product.featured_image | image_url: width: 400}}" alt="{{product.title}}"/>
+    <h3>{{product.title}}</h3>
+    <p>BDT: {{product.price}}</p>
+    <button>Add to Cart</button>
+    <div class="save-message">Save {{current_price}} </div>
+  </a>
 </div>

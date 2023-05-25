@@ -1,8 +1,69 @@
 
-{{'product.css' | asset_url | stylesheet_tag}}
-<h2> {{collections['frontpage'].title}}</h2>
+ {{'homePage.css' |asset_url |stylesheet_tag}}
 
-{% for product in collections['frontpage'].products %}
- {% render 'product-item',product:product %}
-  {{- product.title | link_to: product.url }}
-{% endfor %}
+<div class="banner-section">
+  <img src="{{ 'banner3.avif' | asset_url }}" alt="Banner Image">
+  <a href="/collections/all" class="shop-now-button">Shop Now</a>
+</div>
+
+
+
+<!-- Second Section -->
+<div class="second-section">
+  <h2>10% OFF ON ANY PRODUCT</h2>
+  <p>
+    We are committed to ensuring your shopping experience is enjoyable and satisfying. Thank you for choosing Ranabs 23.
+  </p>
+</div>
+
+
+<div class="third-section">
+  <h2>Popular Products</h2>
+  <div class="product-container">
+    {% for product in collections['frontpage'].products %}
+      <div class="product-item">
+        <div class="product-image">
+          <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title }}">
+          <a href="{{ product.url }}" class="shop-now-button1">Shop Now 🛒 </a>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <h1 class="product-collection">New Collection</h1>
+          <p class="product-description">{{ product.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+<!-- Fourth Section - Shop Branches -->
+<div class="fourth-section">
+  <h2>Shop Branches</h2>
+  <div class="grid-box">
+    <div class="branch">
+      <h3>Mohakhali Branch</h3>
+      <p>House : 76/1  </p>
+      <p>Address: 123 Mohakhali, Dhaka</p>
+    </div>
+    <div class="branch">
+      <h3>Mirpur Branch</h3>
+      <p>House : 204/5  </p>
+      <p>Address: 456 Mirpur, Dhaka</p>
+    </div>
+    <div class="branch">
+      <h3>Badda Branch</h3>
+      <p>House : 12/3  </p>
+      <p>Address: 789 Badda, Dhaka</p>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer Section -->
+<footer>
+  <!-- Add your footer content here -->
+</footer>
