@@ -1,0 +1,12 @@
+{% comment %} {% assign price = product.price %}
+{% assign discount_rate = 0.1 %}
+{% assign discount_price = price | times: discount_rate %}
+{% assign current_price = price | minus: discount_price %} {% endcomment %}
+
+{% capture current_price %}
+  {% assign price = product.price %}
+  {% assign discount_rate = 0.1 %}
+  {% assign discount_price = price | times: discount_rate %}
+  {% assign current_price = price | minus: discount_price %}
+  {{ current_price }}
+{% endcapture %}

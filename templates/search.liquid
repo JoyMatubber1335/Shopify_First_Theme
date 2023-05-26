@@ -13,11 +13,14 @@
     {% elsif result.object_type =="article" %}
       <a href = "{{result.url }}"> 
       {{result.title}}
+      {{result.price}}
       </a>
     {% else %}
-      <a href = "{{result.url }}"> 
-      {{result.title}}
-      </a>
+    <a href="{{ result.url }}"> 
+    {{ result.title }}
+    {% comment %} <img src="{{ product.featured_image }}" alt="img"> {% endcomment %}
+    {% comment %} {{result.}} {% endcomment %}
+  </a>
     {% endif %}
   {% endfor%}
 

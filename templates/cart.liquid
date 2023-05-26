@@ -1,30 +1,43 @@
-{% form 'cart',cart %}
+{{'cart.css' |asset_url |stylesheet_tag}}
 
-<h1>Your Cart </h1>
-{% if cart.empty? %}
-  <p> Your Cart is Empty</p>
- 
-{% else %}
-        {% for item in cart.items %}
-        <div>
-            <img src="{{ item.image | image_url: width: 200}}"/>
-            <h2>{{ item.title }} </h3>
-            <p>{{ item.final_line_price| money }}</p>
-            <input name="updates[]" value="{{ item.quantity }}"> 
-            <a href ="{{ item.url_to_remove }}">Remove</a>
+{% form 'cart', cart %}
 
+<div class="cart-container">
+  <h1> Your Cart</h1>
+
+  {% if cart.empty? %}
+    <p>Your Cart is Empty</p>
+  {% else %}
+    {% for item in cart.items %}
+      <div class="cart-item">
+        <div class="cart-item-image">
+          <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title }}" />
+           
         </div>
-        {% endfor %}
+        <div class="cart-item-details">
+         
+          <div class="cart-item-quantity">
+          
+            <input type="number" id="quantity{{ item.key }}" class="quantity-input" name="updates[]" value="{{ item.quantity }}" min="1">
+            <a href="{{ item.url_to_remove }}">Remove</a>
+          </div>
+        </div>
+        <div class="cart-item-price">
+          <p>BDT: {{ item.final_line_price }}</p>
+        </div>
+        
+      </div>
+    {% endfor %}
 
-        <p>Total :{{cart.total_price | money}}
-        <button type='submit' name='update'>
-        Update</button>
+    <div class="cart-summary">
+      <p class="total-price">Total: {{ cart.total_price }} /-</p>
+      <div class="cart-buttons">
+        <button type="submit" name="update">Update</button>
+        <button type="submit" name="checkout">Checkout</button>
+      </div>
+    </div>
 
-        <button type='submit' name='checkout'>
-         Checkout</button>
+  {% endif %}
+</div>
 
-   {% endif %}
 {% endform %}
-
-
-

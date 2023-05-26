@@ -13,17 +13,22 @@
   
      
     <nav class="navbar">
-       
-        <ul> 
-        <img src="{{ 'logo2.png' | asset_url }}" alt="logo">
-
-
-            
-          {% for link in linklists.main-menu.links %}
-            <li>{{ link.title | link_to: link.url }}</li>
-          {% endfor %}
-        </ul>
-      </nav>
+      <ul class="nav-links">
+        <li>
+          <img src="{{ 'logo2.png' | asset_url }}" alt="logo" class="logo-img">
+        </li>
+        {% for link in linklists.main-menu.links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+        {% endfor %}
+        <li class="cart-link">
+          <a href="/cart">
+            <i class="fas fa-shopping-cart fa-2x cart-icon"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    
       
     
   

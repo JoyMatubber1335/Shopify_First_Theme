@@ -8,14 +8,9 @@
   width: 50%;
 }
 
-.product-image img {
-  width: 100%;
-  height: auto;
-}
-
 .product-details {
   width: 50%;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .product-details h1 {
@@ -83,4 +78,31 @@
 
 .description {
   margin-top: 20px;
+}
+.product-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.product-link img {
+  display: block;
+  width: 500px;
+  height: 300px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.product-link img:hover {
+  border-color: #007bff;
+}
+.previous-price {
+  text-decoration: line-through;
+  color: #7e7979;
+}
+
+.current-price {
+  color: black;
 }

@@ -1,18 +1,46 @@
 
 
   
-
+{% comment %} 
 {% assign price = product.price %}
-{% assign discount = 0.1 %}
-{% assign current_price = price | times: discount %}
+{% assign discount_rate = 0.1 %}
+{% assign discount_price = price | times: discount_rate %}
+{% assign current_price = price | minus: discount_price %} {% endcomment %}
+
+
+
+{% capture current_price %}
+{% assign price = product.price %}
+{% assign discount_rate = 0.1 %}
+{% assign discount_price = price | times: discount_rate %}
+{% assign current_price = price | minus: discount_price %} 
+{{current_price}}
+{% endcapture %}
+
+{% comment %} <p>Current Price22: {{ current_price  }}</p> {% endcomment %}
+
+
+
+
+
 
 
 <div class="product-item">
   <a href="{{product.url}}">
     <img src="{{product.featured_image | image_url: width: 400}}" alt="{{product.title}}"/>
     <h3>{{product.title}}</h3>
-    <p>BDT: {{product.price}}</p>
+    <p>
+      {% comment %} {% assign product_price={{ product.price}}%}
+      {% assign current_price = Current_Price(product_price) %} {% endcomment %}
+
+      
+
+     <span class="previous-price">  BDT:{{ product.price | times: 1.0 }}</span>
+    <span class="current-price">   BDT:{{ current_price }}</span>
+    </p>
+    
+    
     <button>Add to Cart</button>
-    <div class="save-message">Save {{current_price}} </div>
+    <div class="save-message">Save {{discount_price}} </div>
   </a>
 </div>
