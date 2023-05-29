@@ -3,85 +3,49 @@
 
 
    {{ 'head.css' | asset_url | stylesheet_tag }}
+
+
   <div class="announcement">
     <h1>FREE SHIPPING OVER $99</h1>
   </div>
   
-  <header class="header" style="background-color: {{settings.head }};">
-    {% comment %} <h1>{{ shop.name }}</h1> {% endcomment %}
-    <!-- Main menu -->
-  
-     
-    <nav class="navbar">
-      <ul class="nav-links">
-        <li>
-          <img src="{{ 'logo2.png' | asset_url }}" alt="logo" class="logo-img">
-        </li>
-        {% for link in linklists.main-menu.links %}
-        <li>{{ link.title | link_to: link.url }}</li>
-        {% endfor %}
-        <li class="cart-link">
-          <a href="/cart">
-            <i class="fas fa-shopping-cart fa-2x cart-icon"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <header class="header" style="background-color: {{ settings.head }};">
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li>
+        <img src="{{ 'logo2.png' | asset_url }}" alt="logo" class="logo-img">
+      </li>
+      {% for link in linklists.main-menu.links %}
+        <li>{{ link.title | link_to: link.url }}</li> 
+        
+      {% endfor %}
+      <li class="cart-link">
+        <a href="/cart">
+          <i class="fas fa-shopping-cart fa-2x cart-icon"></i>
+          <span class="cart-value" id="cart-value">{{ cart.item_count }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  {% if settings.show_search %}
+    <form action="/search">
+      <input type="search" name="q" placeholder="Search item.." />
+      <button type="submit">Search</button>
+    </form>
+  {% endif %}
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var addToCartButton = document.querySelector('.add-to-cart');
+    var cartValueElement = document.getElementById('cart-value');
     
-    
-      
-    
-  
-    {% if settings.show_search %}
-      <form action="/search">
-        <input type="search" name="q" placeholder="Search item.."/>
-        <button type="submit" >Search</button>
-      </form>
-    {% endif %}
-
-  </header>
-  
-  
+    addToCartButton.addEventListener('click', function() {
+      var currentValue = parseInt(cartValueElement.innerText);
+      var newValue = currentValue + 1;
+      cartValueElement.innerText = newValue;
+    });
+  });
+</script>
 
 
-
-
-
- {% comment %} <style>
-.announcement{
-     background : {{settings.Announcement }};
-     
-}
-</style> {% endcomment %}
-
-{% comment %}
-{% stylesheet %}
-.header{  
-    padding:20px;
-   
-}
-{% endstylesheet %}
-
-{% javascript %}
-  console.log("hay header");
-{% endjavascript %} {% endcomment %}
-
-
-{% comment %} {% schema %}
-{
-    "name":"head",
-    "settings":
-     [
-        {
-        "type": "checkbox",
-        "id": "show_search",
-        "label": "Show Search form?"
-        },
-         {
-        "type": "color", 
-        "id": "head",
-        "label": "Background color"
-        }
-     ]
-}
-{% endschema %} {% endcomment %}

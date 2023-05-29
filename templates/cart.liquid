@@ -1,11 +1,13 @@
 {{'cart.css' |asset_url |stylesheet_tag}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 {% form 'cart', cart %}
 
 <div class="cart-container">
   <h1> Your Cart</h1>
-
+  <a href="/collections/all" class="continue-shopping">   Continue Shopping</a> 
   {% if cart.empty? %}
+
     <p>Your Cart is Empty</p>
   {% else %}
     {% for item in cart.items %}
@@ -19,7 +21,9 @@
           <div class="cart-item-quantity">
           
             <input type="number" id="quantity{{ item.key }}" class="quantity-input" name="updates[]" value="{{ item.quantity }}" min="1">
-            <a href="{{ item.url_to_remove }}">Remove</a>
+            <a href="{{ item.url_to_remove }}"><i class="fas fa-trash" id="cart_trash"></i></a>
+
+            
           </div>
         </div>
         <div class="cart-item-price">
@@ -34,6 +38,7 @@
       <div class="cart-buttons">
         <button type="submit" name="update">Update</button>
         <button type="submit" name="checkout">Checkout</button>
+        
       </div>
     </div>
 

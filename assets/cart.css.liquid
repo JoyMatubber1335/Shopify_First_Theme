@@ -4,8 +4,9 @@
   border-radius: 5px;
   margin-bottom: 20px;
   width: 800px;
-  margin-left: auto;
-  margin-right: 10px;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .cart-container h1 {
@@ -31,6 +32,10 @@
   flex-grow: 1;
 }
 
+#cart_trash {
+  margin-left: 10px;
+}
+
 .cart-item-details h2 {
   font-size: 16px;
   margin-top: 10px;
@@ -48,7 +53,7 @@
 }
 
 .cart-item-quantity input {
-  width: 40px;
+  width: 60px;
   padding: 5px;
 }
 
@@ -72,8 +77,13 @@
 .total-price {
   font-weight: bold;
   margin: 0;
+  padding: 10px;
+  border: 1px solid #262121;
+  border-radius: 5px;
+  background-color: #36745e;
+  display: inline-block;
+  color: white;
 }
-
 .cart-buttons button {
   padding: 10px 20px;
   margin-right: 10px;
@@ -88,6 +98,17 @@
   background-color: #555;
 }
 
-/* Additional Styles */
+/* Existing CSS code */
 
-/* Add your custom styles here */
+.continue-shopping {
+  padding: 10px 20px;
+  background-color: #555;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.continue-shopping:hover {
+  background-color: #777;
+}

@@ -30,6 +30,7 @@
         <button class="quantity-btn plus">+</button>
        
       </div>
+
       <form action="/cart/add" method="post">
         <select name="id">
           {% for variant in product.variants %}
@@ -40,6 +41,8 @@
         </select>
         <button type="submit" class="add-to-cart">{{ "General.add_to_cart" | t }}</button>
       </form>
+
+      
       <div class="description">
         {{ product.description }}
       </div>
@@ -49,3 +52,4 @@
   
 
   <script src="{{ 'product_Quantity.js' | asset_url }}"></script>
+  
